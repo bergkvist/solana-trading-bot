@@ -5,3 +5,20 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
+
+[build-system]
+requires = ["setuptools", "setuptools-rust"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["botlib", "rs"]
+
+[tool.uv]
+package = true
+cache-keys = [{ file = "rs/Cargo.toml" }, { file = "**/*.rs" }]
+
+[[tool.setuptools-rust.ext-modules]]
+target = "rs"
+path = "rs/Cargo.toml"
+native = true
+debug = false
